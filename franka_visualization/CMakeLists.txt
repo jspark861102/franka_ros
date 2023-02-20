@@ -9,13 +9,7 @@ find_package(catkin REQUIRED COMPONENTS
   roscpp
 )
 
-find_package(Franka 0.9.0 QUIET)
-if(NOT Franka_FOUND)
-  find_package(Franka 0.8.0 REQUIRED)
-endif()
-
-# merge Franka + catkin INCLUDE_DIRS in topological order
-list_insert_in_workspace_order(catkin_INCLUDE_DIRS ${Franka_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+find_package(Franka 0.7.0 REQUIRED)
 
 catkin_package(CATKIN_DEPENDS sensor_msgs roscpp)
 
@@ -30,6 +24,7 @@ foreach(executable ${EXECUTABLES})
     ${catkin_EXPORTED_TARGETS}
   )
   target_include_directories(${executable} SYSTEM PUBLIC
+    ${Franka_INCLUDE_DIRS}
     ${catkin_INCLUDE_DIRS}
   )
   target_link_libraries(${executable} PUBLIC

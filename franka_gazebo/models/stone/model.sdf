@@ -7,14 +7,14 @@
         <!--NOTE: Uses limestone density (i.e 2000 kg/m^3) to calculate the mass
         see https://en.wikipedia.org/wiki/Limestone
         -->
-        <mass>0.1024</mass>
+        <mass>0.08192</mass>
         <inertia>
-          <ixx>4.369e-5</ixx>
+          <ixx>3.49525333e-05</ixx>
           <ixy>0</ixy>
           <ixz>0</ixz>
-          <iyy>4.028e-5</iyy>
+          <iyy>3.06926933e-05</iyy>
           <iyz>0</iyz>
-          <izz>1.407e-5</izz>
+          <izz>9.72117333e-06</izz>
         </inertia>
         <pose>0 0 0 0 -0 0</pose>
       </inertial>
@@ -25,7 +25,7 @@
       <visual name='visual'>
         <geometry>
           <box>
-            <size>0.025 0.032 0.064</size>
+            <size>0.02 0.032 0.064</size>
           </box>
         </geometry>
         <material>
@@ -45,7 +45,7 @@
         <pose>0 0 0 0 -0 0</pose>
         <geometry>
           <box>
-            <size>0.025 0.032 0.064</size>
+            <size>0.02 0.032 0.064</size>
           </box>
         </geometry>
         <surface>

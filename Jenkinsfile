@@ -3,13 +3,9 @@ pipeline {
     triggers {
         pollSCM('H/5 * * * *')
     }
-    libraries {
-        lib('fe-pipeline-steps@1.5.0')
-    }
     options {
         checkoutToSubdirectory('src/franka_ros')
         parallelsAlwaysFailFast()
-        disableConcurrentBuilds()
     }
     environment {
         CMAKE_BUILD_PARALLEL_LEVEL=sh(script: 'nproc', returnStdout: true).trim().toInteger()
@@ -117,26 +113,15 @@ pipeline {
                             HOME=sh(script: 'pwd', returnStdout: true).trim()
                         }
                         steps {
-                            sh '''
+                            sh ''' 
                                 . /opt/ros/${DISTRO}/setup.sh
-                                ${BUILD_TOOL} run_tests -j1
+                                ${BUILD_TOOL} run_tests
                                 catkin_test_results
                             '''
                         }
                         post {
                             always {
                                 junit 'build/test_results/**/*.xml'
-                            }
-                        }
-                    }
-                    stage('Check for Non-ASCII') {
-                        when {
-                            // Melodic has problems with non-ascii chars in YAML files
-                            environment name: 'DISTRO', value: 'melodic'
-                        }
-                        steps {
-                            dir('src/franka_ros') {
-                                feEnsureAsciiFileContents('*.yaml')
                             }
                         }
                     }

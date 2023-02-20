@@ -18,13 +18,7 @@ find_package(catkin REQUIRED COMPONENTS
   message_generation
 )
 
-find_package(Franka 0.9.0 QUIET)
-if(NOT Franka_FOUND)
-  find_package(Franka 0.8.0 REQUIRED)
-endif()
-
-# merge Franka + catkin INCLUDE_DIRS in topological order
-list_insert_in_workspace_order(catkin_INCLUDE_DIRS ${Franka_INCLUDE_DIRS} ${catkin_INCLUDE_DIRS})
+find_package(Franka 0.7.0 REQUIRED)
 
 catkin_package(
   INCLUDE_DIRS include
@@ -65,15 +59,12 @@ target_link_libraries(franka_hw
 )
 
 target_include_directories(franka_hw SYSTEM PUBLIC
+  ${Franka_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
 target_include_directories(franka_hw PUBLIC
   include
 )
-
-if (Franka_VERSION GREATER_EQUAL 0.9)
-  target_compile_definitions(franka_hw PUBLIC ENABLE_BASE_ACCELERATION)
-endif()
 
 ## franka_control_services
 add_library(franka_control_services
@@ -91,6 +82,7 @@ target_link_libraries(franka_control_services
 )
 
 target_include_directories(franka_control_services SYSTEM PUBLIC
+  ${Franka_INCLUDE_DIRS}
   ${catkin_INCLUDE_DIRS}
 )
 
