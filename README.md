@@ -1,4 +1,4 @@
-# This version is 0.8.1 that I using now
+This version is 0.8.1 that I using now
 
 
 # ROS integration for Franka Emika research robots
