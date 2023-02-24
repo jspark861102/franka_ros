@@ -1,3 +1,6 @@
+# This version is 0.8.1 that I using now
+
+
 # ROS integration for Franka Emika research robots
 
 [![CI](https://github.com/frankaemika/franka_ros/actions/workflows/ci.yml/badge.svg)](https://github.com/frankaemika/franka_ros/actions/workflows/ci.yml)
